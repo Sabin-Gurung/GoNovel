@@ -1,0 +1,25 @@
+{% extends "shared/_layout.html" %}
+
+{%block header %}
+{{super()}}
+{%endblock%}
+
+{%block navbar%}
+{%endblock%}
+
+{%block body %}
+<div class="container">
+    <form action="/login" method="POST">
+        <label for="username">Username :</label>
+        <input type="text" class="form-control" name="username" id="username" placeholder="Enter your username"/>
+        <label for="password">Password :</label>
+        <input type="text" class="form-control" name="username" id="username" placeholder="Enter your password"/>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{%endblock%}
+
+
+{%block scripts %}
+{{super()}}
+{%endblock%}

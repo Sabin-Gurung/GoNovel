@@ -4,7 +4,7 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/login", (req, res) => {
-    res.send("login not implemented");
+    res.render("login.html");
 });
 
 router.post("/login", (req, res) => {
