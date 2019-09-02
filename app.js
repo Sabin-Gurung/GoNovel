@@ -19,7 +19,7 @@ nunjucks.configure('views', {
 
 
 app.get("/", (req, res)=>{
-    res.send("hello there");
+    res.render("home.html");
 })
 
 const PORT = process.env.PORT || 3000
