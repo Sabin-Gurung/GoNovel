@@ -7,6 +7,12 @@ const nunjucks = require("nunjucks");
 
 const app = express();
 
+// connecting to mongoose
+// Sabin_dev > DURKqTNsbzvVdkAU
+const uri = "mongodb+srv://Sabin_dev:DURKqTNsbzvVdkAU@learningmongo-wj4ik.mongodb.net/gonovel?retryWrites=true&w=majority";
+mongoose.connect(uri, {useNewUrlParser: true, useCreateIndex: true});
+mongoose.connection.once('open', () => {console.log("Mongo db connection success")});
+
 // middle wares
 app.use(morgan("short"));
 app.use(express.static(path.join(__dirname, "public")));
@@ -16,7 +22,6 @@ nunjucks.configure('views', {
     autoescape:true,
     express:app
 })
-
 
 app.get("/", (req, res)=>{
     res.render("home.html");
