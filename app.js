@@ -23,9 +23,22 @@ nunjucks.configure('views', {
     express:app
 })
 
-app.get("/", (req, res)=>{
-    res.render("home.html");
-})
+
+// routes
+app.use(require("./routes/home"));
+app.use(require("./routes/auth"));
+
+// end routes
+app.use((req, res) => {
+    res.status(404).send("Route not found");
+});
+
+// error routes
+app.use((err, req, res, next) => {
+    res.status(500);
+    res.send("Internal server error");
+});
+
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, ()=>{
