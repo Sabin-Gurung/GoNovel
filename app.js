@@ -4,6 +4,8 @@ const path = require("path");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const nunjucks = require("nunjucks");
+const cookieparse = require("cookie-parser");
+const expressSession = require("express-session");
 
 const app = express();
 
