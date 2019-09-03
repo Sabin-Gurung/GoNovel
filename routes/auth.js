@@ -28,6 +28,7 @@ router.post("/login", (req, res, next) => {
             return;
         }
         console.log("validation correct");
+        req.session.username = user.username;
         res.redirect("/home");
     });
 });
@@ -41,6 +42,8 @@ router.post("/signup", (req, res) => {
 });
 
 router.get("/logout", (req, res) => {
+    if (req.session.username)
+        req.session.destroy();
     res.send("log out not implemented");
 });
 
