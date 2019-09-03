@@ -9,13 +9,27 @@ router.get("/login", (req, res) => {
     res.render("login.html");
 });
 
-router.post("/login", (req, res) => {
+router.post("/login", (req, res, next) => {
     // validate user
     let username = req.body.username;
     let password = req.body.password;
 
-    console.log(req.body);
-    res.redirect("/login");
+    User.findOne({username : username}, (err, user) => {
+        if (err)
+            return next(err);
+        if (!user){
+            console.log("user does not exit");
+            res.redirect("/login");
+            return;
+        }
+        if (user.password != password){
+            console.log("password does not exit");
+            res.redirect("/login");
+            return;
+        }
+        console.log("validation correct");
+        res.redirect("/home");
+    });
 });
 
 router.get("/signup", (req, res) => {
