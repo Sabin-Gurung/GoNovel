@@ -6,6 +6,7 @@ const morgan = require("morgan");
 const nunjucks = require("nunjucks");
 const cookieparser = require("cookie-parser");
 const expressSession = require("express-session");
+const flash = require("express-flash");
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use(expressSession({
     resave: true,
     saveUninitialized: true
 }));
+app.use(flash());
 
 // routes
 app.use(require("./routes/home"));

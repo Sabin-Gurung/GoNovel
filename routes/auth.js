@@ -18,11 +18,13 @@ router.post("/login", (req, res, next) => {
         if (err)
             return next(err);
         if (!user){
-            res.render("login.html", {errorMessage : "User does not exit"});
+            req.flash("error", "User does not exist");
+            res.redirect("/login");
             return;
         }
         if (user.password != password){
-            res.render("login.html", {errorMessage : "Invalid password."});
+            req.flash("error", "Invalid password");
+            res.redirect("/login");
             return;
         }
         console.log("validation correct");
