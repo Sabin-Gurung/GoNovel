@@ -7,12 +7,15 @@ const nunjucks = require("nunjucks");
 const cookieparser = require("cookie-parser");
 const expressSession = require("express-session");
 const flash = require("express-flash");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 const app = express();
 
 // connecting to mongoose
-// Sabin_dev > DURKqTNsbzvVdkAU
-const uri = "mongodb+srv://Sabin_dev:DURKqTNsbzvVdkAU@learningmongo-wj4ik.mongodb.net/gonovel?retryWrites=true&w=majority";
+const uri = process.env.MONGO_ATLAS_URI
+console.log(uri);
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true });
 mongoose.connection.once('open', () => { console.log("Mongo db connection success") });
 
@@ -27,7 +30,7 @@ nunjucks.configure('views', {
 })
 app.use(cookieparser());
 app.use(expressSession({
-    secret: ";ladfj;lasdfj;lasdfkj",
+    secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: true
 }));
@@ -49,7 +52,7 @@ app.use((err, req, res, next) => {
 });
 
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT
 app.listen(PORT, () => {
     console.log("app starting on http://localhost:3000");
 });
