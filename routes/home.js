@@ -11,6 +11,11 @@ var checkSignIn = (req, res, next)=>{
 
 // router.get("/home", checkSignIn, (req, res) => {
 router.get("/home", (req, res) => {
+    if (req.session.username) {
+        res.render("home.html", {username : req.session.username});
+        return;
+    }
+
     res.render("home.html");
 });
 
