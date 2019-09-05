@@ -14,7 +14,7 @@ router.post("/login", (req, res, next) => {
     let username = req.body.username;
     let password = req.body.password;
 
-    User.findOne({username : username}, (err, user) => {
+    User.findOne({username : username.toLowerCase()}, (err, user) => {
         if (err)
             return next(err);
         if (!user){
