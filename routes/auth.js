@@ -27,7 +27,6 @@ router.post("/login", (req, res, next) => {
             res.redirect("/login");
             return;
         }
-        console.log("validation correct");
         req.session.username = user.username;
         res.redirect("/home");
     });
@@ -38,7 +37,22 @@ router.get("/signup", (req, res) => {
 });
 
 router.post("/signup", (req, res) => {
-    res.send("signup post not implemented");
+    let username = req.body.username;
+    let password = req.body.password;
+    
+    User.findOne({username : username.toLowerCase()}, (err, user) => {
+        if (err)
+            return next(err);
+        if (user){
+            req.flash("error", "User alreay exist. Choose a different name");
+            res.redirect("/signup");
+            return;
+        }
+        var user = new User({username:username, password: password});
+        user.save();
+        console.log(user);
+        res.redirect("/login");
+    });
 });
 
 router.get("/logout", (req, res) => {

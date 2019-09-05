@@ -9,7 +9,8 @@ var checkSignIn = (req, res, next)=>{
         res.send("You are not logged in");
 }
 
-router.get("/home", checkSignIn, (req, res) => {
+// router.get("/home", checkSignIn, (req, res) => {
+router.get("/home", (req, res) => {
     res.render("home.html");
 });
 
