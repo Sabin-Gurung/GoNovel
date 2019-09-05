@@ -34,11 +34,11 @@ router.post("/login", (req, res, next) => {
 });
 
 router.get("/signup", (req, res) => {
-    res.send("signup not implemented");
+    res.render("signup.html");
 });
 
 router.post("/signup", (req, res) => {
-    res.send("signup not implemented");
+    res.send("signup post not implemented");
 });
 
 router.get("/logout", (req, res) => {
