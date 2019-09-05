@@ -6,6 +6,10 @@ const router = express.Router();
 var User = require("../models/user");
 
 router.get("/login", (req, res) => {
+    if (req.session.username){
+        res.send("you are already logged in man");
+        return;
+    }
     res.render("login.html");
 });
 
@@ -64,9 +68,12 @@ router.post("/signup", (req, res) => {
 });
 
 router.get("/logout", (req, res) => {
-    if (req.session.username)
+    if (req.session.username) {
         req.session.destroy();
-    res.send("log out not implemented");
+        res.redirect("/home");
+        return;
+    }
+    res.send("You are not logged in to be logged out");
 });
 
 
