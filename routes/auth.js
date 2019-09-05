@@ -11,10 +11,10 @@ router.get("/login", (req, res) => {
 
 router.post("/login", (req, res, next) => {
     // validate user
-    let username = req.body.username;
+    let username = req.body.username.toLowerCase().trim();
     let password = req.body.password;
 
-    User.findOne({username : username.toLowerCase()}, (err, user) => {
+    User.findOne({username : username}, (err, user) => {
         if (err)
             return next(err);
         if (!user){
@@ -22,14 +22,19 @@ router.post("/login", (req, res, next) => {
             res.redirect("/login");
             return;
         }
-        if (!user.checkPassword(password)){
-            req.flash("error", "Invalid password");
-            res.redirect("/login");
-            return;
-        }
-
-        req.session.username = user.username;
-        res.redirect("/home");
+        user.checkPassword(password, (err, isMatch) => {
+            if (err){
+                next(err);
+            }
+            if (isMatch){
+                req.session.username = user.username;
+                res.redirect("/home");
+            }
+            else{
+                req.flash("error", "Invalid password");
+                res.redirect("/login");
+            }
+        });
     });
 });
 
@@ -38,10 +43,10 @@ router.get("/signup", (req, res) => {
 });
 
 router.post("/signup", (req, res) => {
-    let username = req.body.username;
+    let username = req.body.username.toLowerCase().trim();
     let password = req.body.password;
     
-    User.findOne({username : username.toLowerCase()}, (err, user) => {
+    User.findOne({username : username}, (err, user) => {
         if (err)
             return next(err);
         if (user){
@@ -50,9 +55,11 @@ router.post("/signup", (req, res) => {
             return;
         }
         var user = new User({username:username, password: password});
-        user.save();
-        console.log(user);
-        res.redirect("/login");
+        user.save((err)=>{
+            if (err)
+                next(err);
+            res.redirect("/login");
+        });
     });
 });
 
@@ -61,8 +68,6 @@ router.get("/logout", (req, res) => {
         req.session.destroy();
     res.send("log out not implemented");
 });
-
-
 
 
 module.exports = router;
