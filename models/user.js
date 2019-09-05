@@ -3,12 +3,15 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 var SALT_FACTOR = 10;
 
+// model schema
 var userSchema = mongoose.Schema({
     username : {type : String, required : true, unique : true},
     password : {type : String, required : true},
     createdAt : {type : Date, default: Date.now}
 })
 
+
+// middle wares
 userSchema.pre("save", function(cb){
     var user = this;
     console.log("inside pre save " + user);
@@ -34,6 +37,14 @@ userSchema.pre("save", function(cb){
         });
     });
 });
+
+
+// methods
+userSchema.methods.checkPassword = function(guess){
+    return this.password == guess;
+}
+
+
 
 var User = mongoose.model("User", userSchema);
 

@@ -22,11 +22,12 @@ router.post("/login", (req, res, next) => {
             res.redirect("/login");
             return;
         }
-        if (user.password != password){
+        if (!user.checkPassword(password)){
             req.flash("error", "Invalid password");
             res.redirect("/login");
             return;
         }
+
         req.session.username = user.username;
         res.redirect("/home");
     });
