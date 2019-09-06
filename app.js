@@ -39,6 +39,7 @@ app.use(flash());
 // routes
 app.use(require("./routes/home"));
 app.use(require("./routes/auth"));
+app.use(require("./routes/profile"));
 
 // end routes
 app.use((req, res) => {
