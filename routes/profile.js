@@ -13,7 +13,11 @@ router.get("/users/:username", (req, res, next) => {
             res.send("Usernot found");
             return;
         }
-        res.send("user found")
+        if (!req.session.username || req.session.username != user.username) {
+            res.send("user found but you cannot edit");
+            return;
+        }
+        res.send("user found and you can edit");
     });
 })
 
