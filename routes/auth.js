@@ -49,6 +49,10 @@ router.get("/signup", (req, res) => {
 router.post("/signup", (req, res) => {
     let username = req.body.username.toLowerCase().trim();
     let password = req.body.password;
+    let firstName = req.body.firstName;
+    let lastName = req.body.lastName;
+    let bio = req.body.bio;
+    let email = req.body.email;
     
     User.findOne({username : username}, (err, user) => {
         if (err)
@@ -58,7 +62,14 @@ router.post("/signup", (req, res) => {
             res.redirect("/signup");
             return;
         }
-        var user = new User({username:username, password: password});
+        var user = new User( {
+                username:username, 
+                password: password,
+                firstName: firstName,
+                lastName: lastName,
+                bio: bio,
+                email: email
+            });
         user.save((err)=>{
             if (err)
                 next(err);
