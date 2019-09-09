@@ -1,0 +1,33 @@
+{% extends "shared/_layout.html" %}
+
+{%block header %}
+{{super()}}
+{%endblock%}
+
+{%block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            {% if canEdit %}
+            Click On the Button to Edit
+            <button class="btn btn-primary btn-small">Edit</button>
+            {% endif %}
+        </div>
+        <div class="col-md-12">
+            <p>
+                First Name : {{user.firstName}}<br/>
+                Last Name : {{user.lastName}}<br/>
+                Username : {{user.username}}<br/>
+                email : {{user.email}}<br/>
+                Bio : {{user.bio}}<br/>
+            </p>
+        </div>
+
+    </div>
+</div>
+{%endblock%}
+
+
+{%block scripts %}
+{{super()}}
+{%endblock%}

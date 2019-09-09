@@ -10,14 +10,20 @@ router.get("/users/:username", (req, res, next) => {
         if (err)
             return next(err);
         if (!user){
-            res.send("Usernot found");
+            res.status(404).send("Sorry Username not found");
             return;
         }
         if (!req.session.username || req.session.username != user.username) {
-            res.send("user found but you cannot edit");
+            res.render("profile.html", {
+                user: user,
+                canEdit:false
+            });
             return;
         }
-        res.send("user found and you can edit");
+        res.render("profile.html", {
+            username:user.username,
+            user: user,
+            canEdit:true});
     });
 })
 
