@@ -41,6 +41,9 @@ app.use(require("./routes/home"));
 app.use(require("./routes/auth"));
 app.use(require("./routes/profile"));
 
+// api routes
+app.use("/api/v1", require("./api/v1/api"));
+
 // end routes
 app.use((req, res) => {
     res.status(404).send("Route not found");
