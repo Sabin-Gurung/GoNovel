@@ -52,7 +52,7 @@ app.use((req, res) => {
 // error routes
 app.use((err, req, res, next) => {
     res.status(500);
-    res.send("Internal server error");
+    res.send("Internal server error : " + err);
 });
 
 

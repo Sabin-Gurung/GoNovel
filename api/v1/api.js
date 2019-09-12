@@ -19,7 +19,7 @@ router.get("/users", (req, res)=>{
     });
 });
 
-router.get("/users/:username", (req, res)=>{
+router.get("/users/:username", (req, res, next)=>{
     User.findOne({username : req.params.username}, "username firstName lastName bio email createdAt", (err, user) => {
         if (err)
             return next(err);
@@ -31,8 +31,24 @@ router.get("/users/:username", (req, res)=>{
     });
 });
 
-
-
+router.patch("/users/:username", (req, res, next)=>{
+    User.findOne({username : req.params.username}, (err, user) => {
+        if (err)
+            return next(err);
+        if (!user){
+            res.json({errorMessage : "User not found in data base"})
+            return;
+        }
+        console.log(user);
+        user.set(req.body);
+        console.log(user);
+        user.save((err, updatedUser)=>{
+            if (err)
+                return next(err);
+            res.json({user: updatedUser});
+        });
+    });
+});
 
 
 module.exports = router;

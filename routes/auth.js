@@ -47,7 +47,7 @@ router.get("/signup", (req, res) => {
 });
 
 router.post("/signup", (req, res) => {
-    let username = req.body.username.toLowerCase().trim();
+    let username = req.body.username;
     let password = req.body.password;
     let firstName = req.body.firstName;
     let lastName = req.body.lastName;

@@ -2,6 +2,7 @@
 $(document).ready(function(){
     console.log("Document is ready");
 
+    // getting list of users from jason
     fetch("/api/v1/users")
     .then(res=>res.json())
     .then(data => {
@@ -13,4 +14,6 @@ $(document).ready(function(){
     .catch((err)=>{
         console.log(err);
     });
+
+
 });

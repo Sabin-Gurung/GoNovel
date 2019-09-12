@@ -17,6 +17,7 @@ var userSchema = mongoose.Schema({
 // middle wares
 userSchema.pre("save", function(cb){
     var user = this;
+    user.username = user.username.toLowerCase().trim();
     if (!user.isModified("password")) {
         return cb();
     }
