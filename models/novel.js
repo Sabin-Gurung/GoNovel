@@ -3,6 +3,7 @@ const mongoose = require("mongoose")
 const User = require("../models/user")
 
 var novelSchema = mongoose.Schema({
+    novelid : {type : String, required: true},
     author : {type : String, required: true},
     title : {type : String, required: true},
     summary : {type : String, required: true},
