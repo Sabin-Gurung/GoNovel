@@ -39,9 +39,7 @@ router.patch("/users/:username", (req, res, next)=>{
             res.status(304).json({errorMessage : "User not found in data base"})
             return;
         }
-        console.log(user);
         user.set(req.body);
-        console.log(user);
         user.save((err, updatedUser)=>{
             if (err)
                 return next(err);

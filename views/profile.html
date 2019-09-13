@@ -30,10 +30,9 @@
 
 {%block scripts %}
 {{super()}}
+{% if canEdit %}
 <script>
     $(".edit-button").click(function(){
-        console.log(this);
-        console.log("edit button clicked");
         let formhtml = `
         <div class="edit-form"> 
             <label for="firstName">First Name :</label>
@@ -70,10 +69,21 @@
                 return elem;
             });
             console.log(jsonBody);
-            // todo update the database
-            console.log("form submitted");
-            window.open(window.location.href);
+            fetch("/api/v1/users/{{user.username}}", {
+                body: JSON.stringify(jsonBody), 
+                method:"PATCH",
+                headers: { "Content-Type": "application/json" }
+            })
+            .then(res=>{
+                if (res.ok){
+                    window.open(window.location.href);
+                }
+                else{
+                    alert("unsuccessful");
+                }
+            })
         });
     });
 </script>
+{% endif %}
 {%endblock%}
