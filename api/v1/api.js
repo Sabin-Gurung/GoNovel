@@ -36,7 +36,7 @@ router.patch("/users/:username", (req, res, next)=>{
         if (err)
             return next(err);
         if (!user){
-            res.json({errorMessage : "User not found in data base"})
+            res.status(304).json({errorMessage : "User not found in data base"})
             return;
         }
         console.log(user);
@@ -45,7 +45,7 @@ router.patch("/users/:username", (req, res, next)=>{
         user.save((err, updatedUser)=>{
             if (err)
                 return next(err);
-            res.json({user: updatedUser});
+            res.status(200).json({user: updatedUser});
         });
     });
 });
