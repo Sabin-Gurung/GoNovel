@@ -1,5 +1,6 @@
 
 const mongoose = require("mongoose")
+const User = require("../models/user")
 
 var novelSchema = mongoose.Schema({
     author : {type : String, required: true},
@@ -11,8 +12,16 @@ var novelSchema = mongoose.Schema({
 });
 
 novelSchema.pre("save", function(cb){
-    this.updatedAt = Date.now();
-    cb();
+    User.findOne({username : this.username}, (err, user)=>{
+        if (err){
+            return cb(err);
+        }
+        else if(user){
+            return cb(new Error(`${this.username} does not exist`));
+        }
+        this.updatedAt = Date.now();
+        cb();
+    });
 });
 
 var Novel = mongoose.model("Novel", novelSchema);
