@@ -3,10 +3,13 @@ const express = require("express");
 const router = express.Router();
 
 const User = require("../../models/user");
+const Novel = require("../../models/novel");
 
 router.get("/", (req, res)=>{
     res.json({message : "Welcome to go novel api v1."});
 });
+
+// ------------------ users -----------------------------
 
 router.get("/users", (req, res)=>{
     User.find({}, "username firstName lastName bio email createdAt", (err, users) => {
@@ -48,5 +51,27 @@ router.patch("/users/:username", (req, res, next)=>{
     });
 });
 
+// ------------------ novels -----------------------------
+router.get("/novels", (req, res)=>{
+    //return all novels
+    res.json("not implemented yet");
+});
+
+router.get("/novels/:novelid", (req, res)=>{
+    //return novels
+    res.json("not implemented yet");
+});
+
+router.post("/novels", (req, res)=>{
+    // create novel
+    //return novels
+    res.json("not implemented yet");
+});
+
+router.patch("/novels/:novelid", (req, res)=>{
+    // create modify
+    //return novels
+    res.json("not implemented yet");
+});
 
 module.exports = router;
