@@ -53,6 +53,11 @@ router.post("/signup", (req, res) => {
     let lastName = req.body.lastName;
     let bio = req.body.bio;
     let email = req.body.email;
+
+    if (username.includes(" ")) {
+        req.flash("error", "Username cannot have spaces");
+        return res.redirect("/signup");
+    }
     
     User.findOne({username : username}, (err, user) => {
         if (err)
