@@ -43,10 +43,6 @@
             <input type="text" class="form-control" name="lastName" id="lastName"
                 value="{{user.lastName}}" />
 
-            <label for="username">Username :</label>
-            <input type="text" class="form-control" name="username" id="username"
-                value="{{user.username}}" />
-
             <label for="email">Email :</label>
             <input type="text" class="form-control" name="email" id="email"
                 value="{{user.email}}" />
@@ -68,7 +64,7 @@
                 jsonBody[$(elem).attr("name")] = $(elem).val();
                 return elem;
             });
-            console.log(jsonBody);
+            jsonBody["username"] = "{{user.username}}";
             fetch("/api/v1/users/{{user.username}}", {
                 body: JSON.stringify(jsonBody), 
                 method:"PATCH",
