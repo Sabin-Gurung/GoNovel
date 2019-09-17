@@ -3,12 +3,12 @@ const mongoose = require("mongoose")
 const User = require("../models/user")
 
 var novelSchema = mongoose.Schema({
-    novelid : {type : String, required: true},
+    novelid : {type : Number},
     author : {type : String, required: true},
     title : {type : String, required: true},
     summary : {type : String, required: true},
     story : {type : String, required: true},
-    createAt : {type : Date, default: Date.now},
+    createdAt : {type : Date, default: Date.now},
     updatedAt : {type : Date, default: Date.now},
 });
 
@@ -21,7 +21,11 @@ novelSchema.pre("save", function(cb){
             return cb(new Error(`${this.username} does not exist`));
         }
         this.updatedAt = Date.now();
-        cb();
+        Novel.countDocuments((err, c)=>{
+            if (err) return cb(err);
+            this.novelid = c + 1;
+            cb();
+        })
     });
 });
 

@@ -53,25 +53,53 @@ router.patch("/users/:username", (req, res, next)=>{
 
 // ------------------ novels -----------------------------
 router.get("/novels", (req, res)=>{
-    //return all novels
-    res.json("not implemented yet");
+    Novel.find({}, "author title summary content createdAt updatedAt novelid", (err, novels) => {
+        var output = {};
+        output["novels"] = [];
+        novels.forEach((novel)=>{
+            output["novels"].push(novel);
+        })
+        res.json(output);
+    });
 });
 
 router.get("/novels/:novelid", (req, res)=>{
-    //return novels
-    res.json("not implemented yet");
+    Novel.findOne({novelid : req.params.novelid}, "author title summary content createdAt updatedAt novelid", (err, novel) => {
+        if (err)
+            return next(err);
+        if (!novel){
+            res.status(304).json({errorMessage : "Novel not found in data base"})
+            return;
+        }
+        res.json(novel);
+    });
 });
 
-router.post("/novels", (req, res)=>{
+router.post("/novels", (req, res, next)=>{
     // create novel
-    //return novels
-    res.json("not implemented yet");
+    let novel = new Novel(req.body);
+    novel.save((err, novel)=>{
+        if (err) next(err);
+        console.log('success')
+        res.json(novel);
+    });
 });
 
 router.patch("/novels/:novelid", (req, res)=>{
-    // create modify
-    //return novels
-    res.json("not implemented yet");
+    Novel.findOne({novelid : req.params.novelid}, "author title summary content createdAt updatedAt novelid", (err, novel) => {
+        if (err)
+            return next(err);
+        if (!novel){
+            res.status(304).json({errorMessage : "Novel not found in data base"})
+            return;
+        }
+        novel.set(req.body);
+        novel.save((err, updatedNovel)=>{
+            if (err)
+                return next(err);
+            res.status(200).json({novel: updatedNovel});
+        });
+    });
 });
 
 module.exports = router;
