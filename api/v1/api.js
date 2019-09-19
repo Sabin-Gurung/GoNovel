@@ -85,16 +85,15 @@ router.post("/novels", (req, res, next)=>{
     });
 });
 
-router.patch("/novels/:novelid", (req, res)=>{
-    Novel.findOne({novelid : req.params.novelid}, "author title summary content createdAt updatedAt novelid", (err, novel) => {
+router.patch("/novels/:novelid", (req, res, next)=>{
+    Novel.findOne({novelid : req.params.novelid}, (err, novel) => {
         if (err)
             return next(err);
         if (!novel){
             res.status(304).json({errorMessage : "Novel not found in data base"})
             return;
         }
-        novel.set(req.body);
-        novel.save((err, updatedNovel)=>{
+        novel.update(req.body).exec((err, updatedNovel)=>{
             if (err)
                 return next(err);
             res.status(200).json({novel: updatedNovel});
