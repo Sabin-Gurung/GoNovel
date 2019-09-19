@@ -1,0 +1,32 @@
+
+{% extends "shared/_layout.html" %}
+
+{%block header %}
+{{super()}}
+{%endblock%}
+
+{%block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 edit-section">
+            {% if canEdit %}
+            Click On the Button to Edit
+            <button class="btn btn-primary btn-small edit-button">Edit</button>
+            {% endif %}
+        </div>
+        <div class="col-md-12 profile-info">
+            <h1>{{novel.title}}</h1>
+            <h6>{{novel.author}}</h6>
+            <p>{{novel.summary}}</p>
+            <p>{{novel.content}}</p>
+        </div>
+
+
+    </div>
+</div>
+{%endblock%}
+
+
+{%block scripts %}
+{{super()}}
+{%endblock%}
