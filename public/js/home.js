@@ -15,5 +15,17 @@ $(document).ready(function(){
         console.log(err);
     });
 
+    fetch("/api/v1/novels")
+    .then(res=>res.json())
+    .then(data => {
+        console.log(data);
+        data.novels.forEach(novel => {
+            $(".trending-novels").append(`<li>${novel.title} - ${novel.author} <a href="/novels/${novel.novelid}">Check Novel</a></li>`);
+        });
+    })
+    .catch((err)=>{
+        console.log(err);
+    });
+
 
 });
