@@ -19,4 +19,13 @@ router.get("/home", (req, res) => {
     res.render("home.html");
 });
 
+router.get("/welcome", (req, res) => {
+    res.render("welcome.html");
+});
+
+router.get("/", (req, res) => {
+    res.redirect("/welcome");
+});
+
+
 module.exports = router;
