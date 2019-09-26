@@ -1,36 +1,24 @@
-
 {% extends "shared/_layout.html" %}
 
 {%block header %}
 {{super()}}
+<link rel="stylesheet" href="css/home.css">
 {%endblock%}
 
 {%block body %}
 <div class="container">
-    <div class="row">
-        <div class="col-12">
-            <div class="jumbotron">
-                <h1>Welcome to GoNovel</h1>
-                <p>
-                    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. In dolorem ea fugiat laboriosam quis iusto voluptas temporibus hic dicta, provident, libero dolores vero voluptates itaque. Impedit tempora modi soluta non.</span>
-                    <span>Id quisquam nobis cumque, eligendi culpa at fugiat, vitae dolores vel voluptatibus odit doloremque autem et laboriosam animi libero? Tempora velit laudantium assumenda accusamus ullam cumque voluptatem illum id modi?</span>
-                    <span>Voluptatem nostrum earum sapiente praesentium minima soluta, modi obcaecati officia consequatur cum maxime aut laborum nobis porro ut, culpa cumque eum aspernatur voluptatibus deleniti dolor unde eligendi eveniet. Suscipit, repellendus!</span>
-                </p>
-            </div>
+    <div class="row novels-section">
+        <div class="col-md-12">
+            <h2>Trending novels</h2>
+            <ul class="list-group trending-novels">
+            </ul>
         </div>
-        <div class="row" style="padding: 30px">
-            <div class="col-md-12">
-                <h2>Trending novels</h2>
-                <ul class="trending-novels">
-                </ul>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <h2>Trending Users</h2>
-                <ul class="trending-users">
-                </ul>
-            </div>
+    </div>
+    <div class="row users-section">
+        <div class="col-md-12">
+            <h2>Trending Users</h2>
+            <ul class="list-group trending-users">
+            </ul>
         </div>
     </div>
 </div>

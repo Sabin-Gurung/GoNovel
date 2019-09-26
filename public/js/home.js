@@ -8,7 +8,7 @@ $(document).ready(function(){
     .then(data => {
         console.log(data);
         data.users.forEach(user => {
-            $(".trending-users").append(`<li>${user.firstName} ${user.lastName} <a href="/users/${user.username}">Check Profile</a></li>`);
+            $(".trending-users").append(`<li class="list-group-item"><a href="/users/${user.username}">${user.firstName} ${user.lastName}</a></li>`);
         });
     })
     .catch((err)=>{
@@ -20,7 +20,7 @@ $(document).ready(function(){
     .then(data => {
         console.log(data);
         data.novels.forEach(novel => {
-            $(".trending-novels").append(`<li>${novel.title} - ${novel.author} <a href="/novels/${novel.novelid}">Check Novel</a></li>`);
+            $(".trending-novels").append(`<li class="list-group-item"><a href="/novels/${novel.novelid}">${novel.title}</a> (<em>${novel.author}</em>)</li>`);
         });
     })
     .catch((err)=>{

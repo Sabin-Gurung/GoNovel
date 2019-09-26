@@ -1,0 +1,26 @@
+
+body{
+    font-family: 'Rubik', sans-serif;
+}
+
+.container{
+    border: solid 1px;
+    border-color : lightgrey;
+    border-radius: 0 0 10px 10px;
+    padding: 20px;
+    background-color: #05668D;
+}
+
+h2{
+    text-shadow: 1px 1px white;
+    font-weight: bold;
+}
+
+.novels-section, .users-section{
+    margin: 10px;
+    background-color: #9DD9D2;
+    color: #05668D;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-radius: 10px;
+}
