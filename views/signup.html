@@ -2,16 +2,20 @@
 
 {%block header %}
 {{super()}}
+<link rel="stylesheet" href="css/signup.css">
 {%endblock%}
 
 {%block navbar%}
 {%endblock%}
 
 {%block body %}
-<div class="container">
+<div class="wrapper">
     <div class="row">
         <div class="col-md-12">
-            <h1>Sign Up Page :</h1>
+            <div class="signup-section">
+                GoNovel</br>
+                Sign Up
+            </div>
             {% if messages.error %}
             <div class="alert alert-danger" role="alert">
                 {{messages.error}}
