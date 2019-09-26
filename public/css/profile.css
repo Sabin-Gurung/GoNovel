@@ -1,7 +1,11 @@
 body{
     font-family: 'Rubik', sans-serif;
+}
+
+.container{
     background-color: #05668D;
 }
+
 
 .profile-section{
     border: solid 1px red;
