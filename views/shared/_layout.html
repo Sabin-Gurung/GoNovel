@@ -33,17 +33,17 @@
             <ul class="navbar-nav">
                 {% if username %}
                 <li class="nav-item">
-                    <a class="nav-link" href="/users/{{username}}">Hi, {{username}}</p>
+                    <a class="nav-link" href="/users/{{username}}"><i class="fas fa-user"></i>  {{username}}</p>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/logout">LogOut</a>
+                    <a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i>  LogOut</a>
                 </li>
                 {%else%}
                 <li class="nav-item">
-                    <a class="nav-link" href="/login">Login</a>
+                    <a class="nav-link" href="/login"><i class="fas fa-sign-in-alt"></i>  Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/signup">Register</a>
+                    <a class="nav-link" href="/signup"><i class="fas fa-user-plus"></i>  Register</a>
                 </li>
                 {% endif %}
             </ul>
