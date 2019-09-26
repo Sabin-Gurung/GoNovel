@@ -6,21 +6,46 @@
 
 {%block body %}
 <div class="container">
-    <div class="row">
+    <div class="row profile-section">
+        <div class="col-md-8">
+            First Name : {{user.firstName}}<br />
+            Last Name : {{user.lastName}}<br />
+            Username : {{user.username}}<br />
+            email : {{user.email}}<br />
+            Bio : {{user.bio}}<br />
+        </div>
+        <div class="col-md-4">
+            <img src="images/balbasaur.png" />
+        </div>
         <div class="col-md-12 edit-section">
             {% if canEdit %}
             Click On the Button to Edit
             <button class="btn btn-primary btn-small edit-button">Edit</button>
             {% endif %}
         </div>
+    </div>
+    {%if canEdit %}
+    <div class="edit-form">
+        <label for="firstName">First Name :</label>
+        <input type="text" class="form-control" name="firstName" id="firstName" value="{{user.firstName}}" />
+
+        <label for="lastName">Last Name :</label>
+        <input type="text" class="form-control" name="lastName" id="lastName" value="{{user.lastName}}" />
+
+        <label for="email">Email :</label>
+        <input type="text" class="form-control" name="email" id="email" value="{{user.email}}" />
+
+        <label for="bio">Say something about your self (bio):</label>
+        <input type="text" class="form-control" name="bio" id="bio" value="{{user.bio}}" />
+
+        <button class="btn btn-primary">Save</button>
+        <button class="btn btn-danger">Cancel</button>
+    </div>
+    {% endif %}
+
+
+    <div class="row">
         <div class="col-md-12 profile-info">
-            <p>
-                First Name : {{user.firstName}}<br/>
-                Last Name : {{user.lastName}}<br/>
-                Username : {{user.username}}<br/>
-                email : {{user.email}}<br/>
-                Bio : {{user.bio}}<br/>
-            </p>
         </div>
 
         <div class="col-md-12">
@@ -36,70 +61,52 @@
 {%block scripts %}
 {{super()}}
 <script>
-{% if canEdit %}
-    $(".edit-button").click(function(){
-        let formhtml = `
-        <div class="edit-form"> 
-            <label for="firstName">First Name :</label>
-            <input type="text" class="form-control" name="firstName" id="firstName"
-                value="{{user.firstName}}" />
-
-            <label for="lastName">Last Name :</label>
-            <input type="text" class="form-control" name="lastName" id="lastName"
-                value="{{user.lastName}}" />
-
-            <label for="email">Email :</label>
-            <input type="text" class="form-control" name="email" id="email"
-                value="{{user.email}}" />
-
-            <label for="bio">Say something about your self (bio):</label>
-            <input type="text" class="form-control" name="bio" id="bio"
-                value="{{user.bio}}" />
-
-            <button class="btn btn-primary">Save</button>
-        </div>
-        `
-
-        $(".profile-info > p").remove();
-        $(".edit-section").remove();
-        $(".profile-info").append(formhtml);
-        $(".edit-form > button").click(function(){
-            let jsonBody = {};
-            $(".edit-form input").map((i, elem)=>{
-                jsonBody[$(elem).attr("name")] = $(elem).val();
-                return elem;
-            });
-            jsonBody["username"] = "{{user.username}}";
-            fetch("/api/v1/users/{{user.username}}", {
-                body: JSON.stringify(jsonBody), 
-                method:"PATCH",
-                headers: { "Content-Type": "application/json" }
-            })
-            .then(res=>{
-                if (res.ok){
+    {% if canEdit %}
+    $(".edit-form").hide();
+    $(".edit-form > .btn-danger").click(function () {
+        $(".edit-form").hide();
+        $(".edit-section").show();
+    });
+    $(".edit-button").click(function () {
+        $(".edit-section").hide();
+        $(".edit-form").show();
+    });
+    $(".edit-form > .btn-primary").click(function () {
+        let jsonBody = {};
+        $(".edit-form input").map((i, elem) => {
+            jsonBody[$(elem).attr("name")] = $(elem).val();
+            return elem;
+        });
+        jsonBody["username"] = "{{user.username}}";
+        fetch("/api/v1/users/{{user.username}}", {
+            body: JSON.stringify(jsonBody),
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" }
+        })
+            .then(res => {
+                if (res.ok) {
                     window.open(window.location.href);
                 }
-                else{
+                else {
                     alert("unsuccessful");
                 }
             })
-        });
     });
-{% endif %}
+    {% endif %}
 
     fetch("/api/v1/novels")
-    .then(res=>res.json())
-    .then(data => {
-        console.log(data);
-        data.novels.forEach(novel => {
-            if ("{{user.username}}" == novel.author) {
-                $(".novels").append(`<li>${novel.title} - ${novel.author} <a href="/novels/${novel.novelid}">Check Novel</a></li>`);
-            }
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            data.novels.forEach(novel => {
+                if ("{{user.username}}" == novel.author) {
+                    $(".novels").append(`<li>${novel.title} - ${novel.author} <a href="/novels/${novel.novelid}">Check Novel</a></li>`);
+                }
+            });
+        })
+        .catch((err) => {
+            console.log(err);
         });
-    })
-    .catch((err)=>{
-        console.log(err);
-    });
 
 </script>
 {%endblock%}
