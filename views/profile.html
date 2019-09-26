@@ -2,7 +2,7 @@
 
 {%block header %}
 {{super()}}
-<link rel="stylesheet" href="css/profile.css">
+<link rel="stylesheet" href="/css/profile.css">
 {%endblock%}
 
 {%block body %}
@@ -16,7 +16,7 @@
             Bio : {{user.bio}}<br />
         </div>
         <div class="col-md-4">
-            <img src="images/balbasaur.png" />
+            <img src="/images/balbasaur.png" />
         </div>
         <div class="col-md-12 edit-section">
             {% if canEdit %}
