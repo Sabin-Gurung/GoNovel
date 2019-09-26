@@ -2,35 +2,33 @@
 
 {%block header %}
 {{super()}}
+<link rel="stylesheet" href="css/login.css">
 {%endblock%}
 
 {%block navbar%}
 {%endblock%}
 
 {%block body %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h1>Login Page :</h1>
-            {% if messages.error %}
-            <div class="alert alert-danger" role="alert">
-                {{messages.error}}
-            </div>
-            {% endif %}
-            <form action="/login" method="POST">
-                <label for="username">Username :</label>
-                <input type="text" class="form-control" name="username" id="username"
-                    placeholder="Enter your username" />
-                <label for="password">Password :</label>
-                <input type="password" class="form-control" name="password" id="password"
-                    placeholder="Enter your password" />
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-            <div class="alert alert-primary" role="alert">
-                Have not registered yet? <a href="/signup">click here to register</a>
-                <br/>
-                <a href="/home">Go back home.</a>
-            </div>
+<div class="row wrapper">
+    <div class="col-md-12">
+        <h1>Login Page :</h1>
+        {% if messages.error %}
+        <div class="alert alert-danger" role="alert">
+            {{messages.error}}
+        </div>
+        {% endif %}
+        <form action="/login" method="POST">
+            <label for="username">Username :</label>
+            <input type="text" class="form-control" name="username" id="username" placeholder="Enter your username" />
+            <label for="password">Password :</label>
+            <input type="password" class="form-control" name="password" id="password"
+                placeholder="Enter your password" />
+            <button type="submit" class="btn btn-primary">Log In</button>
+        </form>
+        <div class="alert alert-primary" role="alert">
+            Have not registered yet? <a href="/signup">click here to register</a>
+            <br />
+            <a href="/home">Go back home.</a>
         </div>
     </div>
 </div>
