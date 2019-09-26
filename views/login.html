@@ -11,7 +11,10 @@
 {%block body %}
 <div class="row wrapper">
     <div class="col-md-12">
-        <h1>Login Page :</h1>
+        <div class="login-image-section">
+            <a href="/home">GoNovel</a><br />
+            Login
+        </div>
         {% if messages.error %}
         <div class="alert alert-danger" role="alert">
             {{messages.error}}
@@ -21,20 +24,17 @@
             <label for="username">Username :</label>
             <input type="text" class="form-control" name="username" id="username" placeholder="Enter your username" />
             <label for="password">Password :</label>
-            <input type="password" class="form-control" name="password" id="password"
-                placeholder="Enter your password" />
+            <input type="password" class="form-control" name="password" id="password" placeholder="Enter your password" />
             <button type="submit" class="btn btn-primary">Log In</button>
         </form>
         <div class="alert alert-primary" role="alert">
-            Have not registered yet? <a href="/signup">click here to register</a>
-            <br />
-            <a href="/home">Go back home.</a>
+            Have not registered yet? <a href="/signup">Register Now</a>
         </div>
     </div>
-</div>
-{%endblock%}
-
-
-{%block scripts %}
-{{super()}}
-{%endblock%}
+    </div>
+    {%endblock%}
+    
+    
+    {%block scripts %}
+    {{super()}}
+    {%endblock%}
