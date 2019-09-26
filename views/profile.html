@@ -2,6 +2,7 @@
 
 {%block header %}
 {{super()}}
+<link rel="stylesheet" href="css/profile.css">
 {%endblock%}
 
 {%block body %}
@@ -44,15 +45,11 @@
     {% endif %}
 
 
-    <div class="row">
-        <div class="col-md-12 profile-info">
-        </div>
-
+    <div class="row novels-section">
         <div class="col-md-12">
-            <ul class="novels">
+            <ul>
             </ul>
         </div>
-
     </div>
 </div>
 {%endblock%}
@@ -100,7 +97,7 @@
             console.log(data);
             data.novels.forEach(novel => {
                 if ("{{user.username}}" == novel.author) {
-                    $(".novels").append(`<li>${novel.title} - ${novel.author} <a href="/novels/${novel.novelid}">Check Novel</a></li>`);
+                    $(".novels-section ul").append(`<li>${novel.title} - ${novel.author} <a href="/novels/${novel.novelid}">Check Novel</a></li>`);
                 }
             });
         })

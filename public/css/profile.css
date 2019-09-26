@@ -1,0 +1,12 @@
+body{
+    font-family: 'Rubik', sans-serif;
+    background-color: #05668D;
+}
+
+.profile-section{
+    border: solid 1px red;
+}
+
+.profile-section .col-md-4{
+    border: solid 1px red;
+}
