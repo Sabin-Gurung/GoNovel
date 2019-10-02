@@ -1,5 +1,6 @@
 body{
     font-family: 'Rubik', sans-serif;
+    color: white;
 }
 
 .container{
@@ -9,6 +10,25 @@ body{
 
 .profile-section{
     border: solid 1px red;
+    padding:20px;
+}
+
+.profile-section .info-subsection{
+    border: solid 1px red;
+    padding:20px;
+}
+
+.profile-section .info-subsection h3{
+    font-weight: bold;
+}
+
+.profile-section .info-subsection p{
+    font-size: 20px;
+}
+
+
+.profile-section hr{
+    background-color: white;
 }
 
 .profile-section .col-md-4{

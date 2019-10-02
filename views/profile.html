@@ -8,19 +8,21 @@
 {%block body %}
 <div class="container">
     <div class="row profile-section">
-        <div class="col-md-8">
-            First Name : {{user.firstName}}<br />
-            Last Name : {{user.lastName}}<br />
-            Username : {{user.username}}<br />
-            email : {{user.email}}<br />
-            Bio : {{user.bio}}<br />
+        <div class="col-md-8 info-subsection">
+            <h3>{{user.firstName}} {{user.lastName}}</h3><br />
+            <p>
+            {{user.username}}<br /> {{user.email}}
+            </p>
+            <hr/>
+            <p>
+            {{user.bio}}
+            </p>
         </div>
         <div class="col-md-4">
             <img src="/images/balbasaur.png" />
         </div>
         <div class="col-md-12 edit-section">
             {% if canEdit %}
-            Click On the Button to Edit
             <button class="btn btn-primary btn-small edit-button">Edit</button>
             {% endif %}
         </div>
