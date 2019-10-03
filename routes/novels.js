@@ -3,6 +3,8 @@ const router = express.Router();
 
 const Novel = require("../models/novel")
 
+const authmiddleware = require("../middlewares/auth")
+
 router.get("/novels/:novelid", (req, res, next) => {
     Novel.findOne({novelid : req.params.novelid}, (err, novel) => {
         if (err)
@@ -14,7 +16,7 @@ router.get("/novels/:novelid", (req, res, next) => {
     });
 })
 
-router.get("/novels/create", (req, res, next) => {
+router.get("/novels-create", authmiddleware.checkSignIn, (req, res, next) => {
         res.send("creating novel");
 })
 
