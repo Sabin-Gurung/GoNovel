@@ -7,6 +7,10 @@ body{
     background-color: #05668D;
 }
 
+.edit-section > button{
+    margin-top: 10px;
+}
+
 
 .profile-section{
     border: solid 1px red;

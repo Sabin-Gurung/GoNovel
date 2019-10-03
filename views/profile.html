@@ -19,7 +19,8 @@
             </p>
         </div>
         <div class="col-md-4">
-            <img src="/images/balbasaur.png" />
+            <!-- <img src="/images/balbasaur.png" /> -->
+            <p>Photo here please</p>
         </div>
         <div class="col-md-12 edit-section">
             {% if canEdit %}
@@ -63,12 +64,14 @@
     {% if canEdit %}
     $(".edit-form").hide();
     $(".edit-form > .btn-danger").click(function () {
-        $(".edit-form").hide();
-        $(".edit-section").show();
+        $(".edit-form").slideUp(200, ()=>{
+            $(".edit-section").slideDown(200);
+        });
     });
     $(".edit-button").click(function () {
-        $(".edit-section").hide();
-        $(".edit-form").show();
+        $(".edit-section").slideUp(200, ()=>{
+            $(".edit-form").slideDown(200);
+        });
     });
     $(".edit-form > .btn-primary").click(function () {
         let jsonBody = {};
