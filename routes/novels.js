@@ -14,4 +14,8 @@ router.get("/novels/:novelid", (req, res, next) => {
     });
 })
 
+router.get("/novels/create", (req, res, next) => {
+        res.send("creating novel");
+})
+
 module.exports = router;
