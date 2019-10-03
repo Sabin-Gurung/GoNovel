@@ -1,10 +1,10 @@
 body{
     font-family: 'Rubik', sans-serif;
-    color: white;
+    color: #05668D;
 }
 
 .container{
-    background-color: #05668D;
+    /* background-color: #05668D; */
 }
 
 .edit-section > button{
@@ -13,8 +13,12 @@ body{
 
 
 .profile-section{
-    border: solid 1px red;
+    /* border: solid 1px red; */
     padding:20px;
+    border-radius: 10px;
+    margin-top:2px;
+    margin-bottom:2px;
+    background-color: #9DD9D2;
 }
 
 .profile-section .info-subsection{
@@ -37,4 +41,40 @@ body{
 
 .profile-section .col-md-4{
     border: solid 1px red;
+}
+
+.edit-form{
+    background-color: #00B2CA;
+    border: solid 1px red;
+    padding:20px;
+    border-radius: 10px;
+    margin-bottom:2px;
+}
+
+.edit-form input{
+    margin-bottom: 5px;
+}
+
+.edit-form input{
+    margin-bottom: 5px;
+}
+
+.novels-section{
+    background-color: #9DD9D2;
+    padding:5px;
+    border-radius: 10px;
+
+}
+
+.novels-section .novel-cards{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.novels-section .novel-cards > .card{
+    background-color: #9DD9D2;
+}
+
+.novels-section .novel-cards > .card > .card{
+    padding: 10px;
 }

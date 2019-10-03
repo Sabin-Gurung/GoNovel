@@ -11,11 +11,11 @@
         <div class="col-md-8 info-subsection">
             <h3>{{user.firstName}} {{user.lastName}}</h3><br />
             <p>
-            {{user.username}}<br /> {{user.email}}
+                {{user.username}}<br /> {{user.email}}
             </p>
-            <hr/>
+            <hr />
             <p>
-            {{user.bio}}
+                {{user.bio}}
             </p>
         </div>
         <div class="col-md-4">
@@ -47,11 +47,11 @@
     </div>
     {% endif %}
 
-
     <div class="row novels-section">
         <div class="col-md-12">
-            <ul>
-            </ul>
+            <h3>Novels</h3>
+        </div>
+        <div class="novel-cards row">
         </div>
     </div>
 </div>
@@ -64,12 +64,12 @@
     {% if canEdit %}
     $(".edit-form").hide();
     $(".edit-form > .btn-danger").click(function () {
-        $(".edit-form").slideUp(200, ()=>{
+        $(".edit-form").slideUp(200, () => {
             $(".edit-section").slideDown(200);
         });
     });
     $(".edit-button").click(function () {
-        $(".edit-section").slideUp(200, ()=>{
+        $(".edit-section").slideUp(200, () => {
             $(".edit-form").slideDown(200);
         });
     });
@@ -102,7 +102,14 @@
             console.log(data);
             data.novels.forEach(novel => {
                 if ("{{user.username}}" == novel.author) {
-                    $(".novels-section ul").append(`<li>${novel.title} - ${novel.author} <a href="/novels/${novel.novelid}">Check Novel</a></li>`);
+                    $(".novel-cards").append(`<div class="card col-md-3">` + 
+                        `<div class="card">` + 
+                            `<h5 class="card-title">${novel.title}</h5>` + 
+                            `<h6 class="card-title">${novel.author}</h5>` + 
+                            `<p class="card-text">${novel.summary}</p>` + 
+                            `<a href="/novels/${novel.novelid}">see more</a>` + 
+                        `</div>` + 
+                    `</div>`);
                 }
             });
         })
