@@ -12,6 +12,12 @@ router.get("/novels/:novelid", (req, res, next) => {
         if (!novel)
             return next();
         
+        if (req.session.username) {
+            if (novel.author == req.session.username){
+                return res.render("novel.html", {canEdit: true,novel : novel, username : req.session.username});
+            }
+            return res.render("novel.html", {novel : novel, username : req.session.username});
+        }
         res.render("novel.html", {novel : novel});
     });
 })
