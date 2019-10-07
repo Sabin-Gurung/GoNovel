@@ -50,6 +50,9 @@
     <div class="row novels-section">
         <div class="col-md-12">
             <h3>Novels</h3>
+            {%if canEdit %}
+            <a href="/novels-create" class="btn btn-sm btn-primary mb-3"> + Add New Novel</a>
+            {% endif %}
         </div>
         <div class="novel-cards row">
         </div>
