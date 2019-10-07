@@ -23,7 +23,7 @@ router.get("/novels/:novelid", (req, res, next) => {
 })
 
 router.get("/novels-create", authmiddleware.checkSignIn, (req, res, next) => {
-        res.send("creating novel");
+        res.render("novelCreate.html", {username : req.session.username});
 })
 
 module.exports = router;
