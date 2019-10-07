@@ -22,7 +22,7 @@ body{
 }
 
 .profile-section .info-subsection{
-    border: solid 1px red;
+    /* border: solid 1px red; */
     padding:20px;
 }
 
@@ -40,12 +40,12 @@ body{
 }
 
 .profile-section .col-md-4{
-    border: solid 1px red;
+    /* border: solid 1px red; */
 }
 
 .edit-form{
     background-color: #00B2CA;
-    border: solid 1px red;
+    /* border: solid 1px red; */
     padding:20px;
     border-radius: 10px;
     margin-bottom:2px;
