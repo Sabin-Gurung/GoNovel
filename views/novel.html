@@ -2,35 +2,41 @@
 
 {%block header %}
 {{super()}}
-<link rel="stylesheet" href="/css/novel.css"/>
+<link rel="stylesheet" href="/css/novel.css" />
 {%endblock%}
 
 {%block body %}
 <div class="container">
     <div class="row">
         {% if canEdit %}
-        <div class="row col-md-12 title-section mt-2">
-            <div class="col-md-9">
-                <h1>{{novel.title}}</h1>
-                <h6>{{novel.author}}</h6>
-            </div>
-            <div class="col-md-3">
-                <button class="btn btn-primary edit-button m-2">Edit</button>
+        <div class="col-md-12 title-section">
+            <div class="row">
+                <div class="col-md-10">
+                    <h1>{{novel.title}}</h1>
+                    <h3>{{novel.author}}</h3>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-warning edit-button m-2">Edit</button>
+                </div>
             </div>
         </div>
         {% else %}
         <div class="col-md-12 title-section">
-                <h1>{{novel.title}}</h1>
-                <h6>{{novel.author}}</h6>
+            <h1>{{novel.title}}</h1>
+            <h6>{{novel.author}}</h6>
         </div>
         {% endif %}
+
         <div class="col-md-12 summary-section">
             <button class="btn btn-sm btn-primary show-summary-btn">Show summary</button>
             <button class="btn btn-sm btn-primary hide-summary-btn">Hide summary</button>
+            <hr>
             <p>{{novel.summary}}</p>
         </div>
         <div class="col-md-12 content-section">
-            <p>{{novel.story}}</p>
+            <div class="well">
+                <p>{{novel.story}}</p>
+            </div>
         </div>
     </div>
 </div>

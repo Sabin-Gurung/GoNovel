@@ -1,0 +1,20 @@
+.title-section{
+    background-color: #00B2CA;
+    border: sold 2px red;
+    padding: 20px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.summary-section{
+    background-color: #9DD9D2;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.content-section{
+    border: solid 1px #9DD9D2;
+    padding: 10px;
+    border-radius: 5px;
+}
