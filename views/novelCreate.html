@@ -2,13 +2,32 @@
 
 {%block header %}
 {{super()}}
+<link rel="stylesheet" href="/css/novelCreate.css">
 {%endblock%}
 
 {%block body %}
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
-            <h1>welcome to novel create page</h1>
+        <div class="col-md-12 header-section">
+            <h1>Create New Novel</h1>
+        </div>
+
+        <div class="row col-md-8 offset-md-2 new-novel-form-section">
+            <div class="input-group col-md-12">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Title</span>
+                </div>
+                <input type="text" class="form-control" placeholder="Enter the title of your book" aria-label="Username"
+                    aria-describedby="basic-addon1">
+            </div>
+            <div class="col-md-12">
+                <label for="exampleFormControlTextarea1">Summary : </label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <div class="col-md-12">
+                <label for="exampleFormControlTextarea1">Content :</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="8"></textarea>
+            </div>
         </div>
 
     </div>
