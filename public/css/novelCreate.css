@@ -1,5 +1,9 @@
 
 
 .header-section{
-    background-color: red;
+    border: solid red 1px;
+}
+
+.new-novel-form-section{
+    border: solid red 1px;
 }
