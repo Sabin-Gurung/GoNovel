@@ -17,19 +17,19 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">Title</span>
                 </div>
-                <input type="text" class="form-control" placeholder="Enter the title of your book" aria-label="Username"
+                <input type="text" class="form-control" id="title" placeholder="Enter the title of your book" aria-label="Username"
                     aria-describedby="basic-addon1">
             </div>
             <div class="col-md-12">
                 Author : {{username}}
             </div>
             <div class="col-md-12">
-                <label for="exampleFormControlTextarea1">Summary : </label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <label for="summary">Summary : </label>
+                <textarea class="form-control" id="summary" rows="3"></textarea>
             </div>
             <div class="col-md-12">
-                <label for="exampleFormControlTextarea1">Content :</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="8"></textarea>
+                <label for="story">Content :</label>
+                <textarea class="form-control" id="story" rows="8"></textarea>
             </div>
             <div class="col-md-12">
                 <button class="btn btn-primary">Save</button>
@@ -43,4 +43,25 @@
 
 {%block scripts %}
 {{super()}}
+<script>
+    console.log("running script");
+    $(".new-novel-form-section button").click(()=>{
+        if (!areFieldsFilled())
+        {
+            alert("Invomplete fields");
+            return;
+        }
+        alert("doing useful thing");
+    });
+
+    function getInfo(){
+        if ($("#title").val().trim() == ""   ||
+            $("#summary").val().trim() == "" ||
+            $("#story").val().trim() == ""){
+            return false
+        }
+        return true;
+    }
+
+</script>
 {%endblock%}
