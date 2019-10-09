@@ -51,7 +51,22 @@
             alert("Invomplete fields");
             return;
         }
-        alert("doing useful thing");
+
+        let body = {
+            author : "{{username}}",
+            title : $("#title").val().trim(),
+            summary: $("#summary").val().trim(),
+            story: $("#story").val().trim()
+        }
+
+        // fetch("/api/v1/novels", {
+        //     method:"POST",
+        //     body: JSON.stringify(body)
+        // })
+        // .then(res=>res.json())
+        // .then(res=>{
+        //     // do my thing
+        // });
     });
 
     function getInfo(){
