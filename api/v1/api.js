@@ -39,7 +39,7 @@ router.patch("/users/:username", (req, res, next)=>{
         if (err)
             return next(err);
         if (!user){
-            res.status(304).json({errorMessage : "User not found in data base"})
+            res.status(304).json({errorMessage : "User not found in data base"});
             return;
         }
         user.set(req.body);
@@ -68,10 +68,23 @@ router.get("/novels/:novelid", (req, res)=>{
         if (err)
             return next(err);
         if (!novel){
-            res.status(304).json({errorMessage : "Novel not found in data base"})
+            res.status(304).json({errorMessage : "Novel not found in data base"});
             return;
         }
         res.json(novel);
+    });
+});
+
+router.delete("/novels/:novelid", (req, res, next)=>{
+    Novel.deleteOne({novelid : req.params.novelid}, (err, result) => {
+        if (err)
+            return next(err);
+        if (result.n == 0) {
+            res.status(304).json({errorMessage : "Novel not found in data base"});
+        }
+        else{
+            res.json(result);
+        }
     });
 });
 
