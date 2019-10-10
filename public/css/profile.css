@@ -77,4 +77,5 @@ body{
 
 .novels-section .novel-cards > .card > .card{
     padding: 10px;
+    height: 100%;
 }
