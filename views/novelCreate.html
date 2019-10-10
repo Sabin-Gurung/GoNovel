@@ -59,17 +59,18 @@
             story: $("#story").val().trim()
         }
 
-        // fetch("/api/v1/novels", {
-        //     method:"POST",
-        //     body: JSON.stringify(body)
-        // })
-        // .then(res=>res.json())
-        // .then(res=>{
-        //     // do my thing
-        // });
+        fetch("/api/v1/novels", {
+            method:"POST",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            window.location = `/novels/${data.novelid}`
+        });
     });
 
-    function getInfo(){
+    function areFieldsFilled(){
         if ($("#title").val().trim() == ""   ||
             $("#summary").val().trim() == "" ||
             $("#story").val().trim() == ""){
