@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "description": "App to post and browse amatuer novels",
   "main": "app.js",
+  "engines": {
+    "node": "10.16.1",
+    "npm": "6.9.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "start": "node app.js"
   },
   "nodemonConfig": {
     "ignore": [
