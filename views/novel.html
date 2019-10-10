@@ -26,10 +26,10 @@
             <input type="text" class="form-control" name="title" id="title" value="{{novel.title}}" />
 
             <label for="summary">Summary :</label>
-            <textarea class="form-control" id="summary" name="sumamry" rows="3"></textarea>
+            <textarea class="form-control" id="summary" name="sumamry" rows="3">{{novel.summary}}</textarea>
 
             <label for="story">Story :</label>
-            <textarea class="form-control" id="story" name="story" rows="7"></textarea>
+            <textarea class="form-control" id="story" name="story" rows="7" >{{novel.story}}</textarea>
 
             <button class="btn btn-primary save-story-button">Save</button>
             <button class="btn btn-danger cancel-story-button">Cancel</button>
@@ -73,10 +73,27 @@
 
     $(".edit-button").click(()=>{
         $(".edit-form").slideDown(200);
+        $(".edit-button").hide();
+    });
+
+    $(".save-story-button").click(()=>{
+        let body= {
+            title : $("#title").val(),
+            summary : $("#summary").val(),
+            story : $("#story").val()
+        }
+        fetch("/api/v1/novels/{{novel.novelid}}", {
+            method:"PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body)
+        }).then(res=>{
+            window.location = "/novels/{{novel.novelid}}";
+        });
     });
 
     $(".cancel-story-button").click(()=>{
         $(".edit-form").slideUp(200);
+        $(".edit-button").show();
     });
 
     {% endif %}
