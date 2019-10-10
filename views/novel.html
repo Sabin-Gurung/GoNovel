@@ -47,9 +47,16 @@
 {%block scripts %}
 {{super()}}
 <script>
+    {% if canEdit %}
     $(".delete-button").click(() => {
-        alert("not implemented");
+        if (!confirm("Are you sure you want to delete this novel ?"))
+            return;
+        fetch("/api/v1/novels/{{novel.novelid}}", {method:"DELETE"})
+        .then(res=>{
+            window.location = "/users/{{novel.author}}";
+        });
     });
+    {% endif %}
 </script>
 <script src="/js/novel.js"></script>
 {%endblock%}
