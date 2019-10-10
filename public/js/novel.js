@@ -18,8 +18,4 @@ $(document).ready(()=>{
 
     $(".hide-summary-btn").hide();
     $(".summary-section > p").hide();
-
-    $(".edit-button").click(()=>{alert("Not implemented yet");});
-
-
 });

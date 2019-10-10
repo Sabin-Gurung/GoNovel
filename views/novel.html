@@ -21,6 +21,19 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-12 edit-form">
+            <label for="title">Title :</label>
+            <input type="text" class="form-control" name="title" id="title" value="{{novel.title}}" />
+
+            <label for="summary">Summary :</label>
+            <textarea class="form-control" id="summary" name="sumamry" rows="3"></textarea>
+
+            <label for="story">Story :</label>
+            <textarea class="form-control" id="story" name="story" rows="7"></textarea>
+
+            <button class="btn btn-primary save-story-button">Save</button>
+            <button class="btn btn-danger cancel-story-button">Cancel</button>
+        </div>
         {% else %}
         <div class="col-md-12 title-section">
             <h1>{{novel.title}}</h1>
@@ -48,6 +61,7 @@
 {{super()}}
 <script>
     {% if canEdit %}
+    $(".edit-form").hide();
     $(".delete-button").click(() => {
         if (!confirm("Are you sure you want to delete this novel ?"))
             return;
@@ -56,6 +70,15 @@
             window.location = "/users/{{novel.author}}";
         });
     });
+
+    $(".edit-button").click(()=>{
+        $(".edit-form").slideDown(200);
+    });
+
+    $(".cancel-story-button").click(()=>{
+        $(".edit-form").slideUp(200);
+    });
+
     {% endif %}
 </script>
 <script src="/js/novel.js"></script>
